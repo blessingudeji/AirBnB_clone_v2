@@ -16,7 +16,7 @@ sudo echo "<html>
   <body>
     Holberton School
   </body>
-</html>">/data/web_static/releases/test/index.html
+</html>" | sudo tee /data/web_static/releases/test/index.html
 
 sudo ln -sf /data/web_static/releases/test/ /data/web_static/current
 
@@ -44,7 +44,7 @@ sudo printf %s "server {
       root /var/www/html;
       internal;
     }
-}" > /etc/nginx/sites-available/default
+}" | sudo tee /etc/nginx/sites-available/default
 
 
 sudo service nginx restart
