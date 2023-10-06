@@ -35,10 +35,10 @@ def do_deploy(archive_path):
 
     try:
         release_folder = "/data/web_static/releases/"
-        
-        # Upload the archive to /tmp/
+
+    # Upload the archive to /tmp/
         put(archive_path, "/tmp/")
-        
+
         # Extract the archive to a new release folder
         run(f"sudo tar -xzf /tmp/{archive_path} -C {release_folder}")
 
@@ -49,13 +49,15 @@ def do_deploy(archive_path):
         run("sudo rm /data/web_static/current")
 
         # Create new symlink
-        run("sudo ln -s {} /data/web_static/current".format(release_folder + "web_static"))
+        run("sudo ln -s {} /data/web_static/current".format(
+            release_folder + "web_static"))
         print("New version deployed!")
         return True
 
     except Exception as deployError:
         print("Something went wrong because:", deployError)
         return False
+
 
 def deploy():
     """This function creates and distributes an archive to a web server"""
